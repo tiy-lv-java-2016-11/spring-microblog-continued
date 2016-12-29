@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages by {{user.username}}</title>
+</head>
+<body>
+<p>
+<form action="/logout" method="post" style="display: inline">
+    <button type="submit">Logout</button>
+</form>
+<a href="/"><button>Home</button></a>{{currentUser}} is currently logged in
+</p>
+<hr>
+<h1>Messages by {{user.username}}:</h1>
+<ol>
+    {{#messages}}
+    <li>
+        <a href="/message?id={{id}}">{{content}} </a>
+    </li>
+    {{/messages}}
+</ol>
+</body>
+</html>

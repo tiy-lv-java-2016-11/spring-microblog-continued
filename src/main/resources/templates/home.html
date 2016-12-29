@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Microblogger</title>
+</head>
+<body>
+{{#currentUser}}
+<form action="/logout" method="post" style="display: inline">
+    <button type="submit">Logout</button>
+</form>{{currentUser}} is currently logged in
+<hr>
+<form action="/add-message" method="post">
+    <input type="text" placeholder="Enter your message" name="content" />
+    <button type="submit">Submit</button>
+</form>
+<h1>Messages by all users:</h1>
+<form id="fDelete" action="/delete-message" method="post">
+<ol>
+    {{#messages}}
+    <li><a href="/message?id={{id}}">{{content}} </a> by
+        <a href="/user?id={{user.id}}">{{user.username}}</a>
+        <!--<button type="submit" id="delete" name="id" value="{{id}}">Delete</button>-->
+    </li>
+    {{/messages}}
+</ol>
+</form>
+{{/currentUser}}
+
+{{^currentUser}}
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Enter your name" />
+    <input type="password" name="password" placeholder="Enter your password" />
+    <button type="submit">Login</button>
+</form>
+{{/currentUser}}
+<script src="/main.js"></script>
+</body>
+</html>

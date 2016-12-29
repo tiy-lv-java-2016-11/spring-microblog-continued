@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message Detail</title>
+</head>
+<body>
+<form action="/logout" method="post" style="display: inline">
+    <button type="submit">Logout</button>
+</form>
+<a href="/"><button>Home</button></a>{{currentUser}} is currently logged in
+<hr>
+<p>{{message.content}}</p>
+<p>Created by <a href="/user?id={{message.user.id}}">{{message.user.username}}</a> on {{message.createdOn}}</p>
+{{#access}}
+<form action="/update-message?id={{message.id}}" method="post">
+    <input type="text" placeholder="Enter new message here" name="content">
+    <button type="submit">Update</button>
+</form>
+<form id="fDelete" action="/delete-message?id={{message.id}}" method="post">
+    <button type="submit" id="delete">Delete</button>
+</form>
+{{/access}}
+<script src="/main.js"></script>
+</body>
+</html>
